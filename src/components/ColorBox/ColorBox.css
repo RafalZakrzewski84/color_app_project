@@ -80,7 +80,7 @@
 	align-items: center;
 	flex-direction: column;
 	color: white;
-	font-size: 4rem;
+	font-size: 2.5rem;
 	transform: scale(0.1);
 	opacity: 0;
 }
@@ -89,6 +89,21 @@
 	transform: scale(1);
 	opacity: 1;
 	z-index: 25;
-	background: rgba(255, 255, 255, 0.3);
 	transition: all 0.4s ease-in-out;
+	transition-delay: 0.3s;
+}
+
+.ColorBox__copy-msg h1 {
+	font-weight: 400;
+	padding: 1rem;
+	text-shadow: 1px 2px black;
+	background: rgba(255, 255, 255, 0.2);
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.ColorBox__copy-msg p {
+	font-size: 1.2rem;
+	font-weight: 100;
 }
