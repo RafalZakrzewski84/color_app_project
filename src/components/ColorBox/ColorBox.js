@@ -9,6 +9,9 @@ class ColorBox extends Component {
 		return (
 			<CopyToClipboard text={color}>
 				<div style={{ background: color }} className="ColorBox">
+					<div
+						style={{ background: color }}
+						className="ColorBox__copy-overlay"></div>
 					<div className="ColorBox__copy-container">
 						<div className="ColorBox__box-content">
 							<span>{name}</span>
