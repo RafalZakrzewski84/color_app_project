@@ -6,8 +6,9 @@ import './Palette.css';
 
 class Palette extends Component {
 	render() {
-		const { colors } = this.props;
-		const colorBoxes = colors.map((color, idx) => (
+		const { colors } = this.props.palette;
+		console.log(colors);
+		const colorBoxes = colors[100].map((color, idx) => (
 			<ColorBox key={color.name + idx} {...color} />
 		));
 		return (

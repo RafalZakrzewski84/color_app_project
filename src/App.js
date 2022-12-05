@@ -8,10 +8,9 @@ import seedsPalette from './assets/seedsPalette';
 
 class App extends Component {
 	render() {
-		console.log(generatePalette(seedsPalette[8]));
 		return (
 			<div>
-				<Palette {...seedsPalette[8]} />
+				<Palette palette={generatePalette(seedsPalette[8])} />
 			</div>
 		);
 	}
