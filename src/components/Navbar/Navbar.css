@@ -45,5 +45,12 @@
 }
 
 .Navbar__select-container {
+	height: 80%;
+	margin-right: 5px;
 	margin-left: auto;
+}
+
+.Navbar__select-container
+	.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+	padding: 5px 10px;
 }
