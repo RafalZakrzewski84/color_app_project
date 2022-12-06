@@ -17,18 +17,18 @@ class ColorBox extends Component {
 	}
 
 	render() {
-		const { hex, name } = this.props;
+		const { background, name } = this.props;
 		const show = this.state.copied;
 
 		return (
-			<CopyToClipboard text={hex} onCopy={this.changeCopyState}>
-				<div style={{ background: hex }} className="ColorBox">
+			<CopyToClipboard text={background} onCopy={this.changeCopyState}>
+				<div style={{ background: background }} className="ColorBox">
 					<div
-						style={{ background: hex }}
+						style={{ background: background }}
 						className={`ColorBox__copy-overlay ${show ? 'show' : ''}`}></div>
 					<div className={`ColorBox__copy-msg ${show ? 'show' : ''}`}>
 						<h1>Copied!</h1>
-						<p>{hex}</p>
+						<p>{background}</p>
 					</div>
 					<div className="ColorBox__copy-container">
 						<div className="ColorBox__box-content">
