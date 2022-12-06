@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider';
-import { Select, MenuItem } from '@mui/material';
+import { Select, MenuItem, Snackbar, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 import 'rc-slider/assets/index.css';
 import './Navbar.css';
@@ -8,8 +9,9 @@ import './Navbar.css';
 class Navbar extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { colorFormat: 'hex' };
+		this.state = { colorFormat: 'hex', snackbarOpen: true };
 		this.handleChange = this.handleChange.bind(this);
+		this.closeSnackbar = this.closeSnackbar.bind(this);
 	}
 
 	handleChange(evt) {
@@ -17,9 +19,22 @@ class Navbar extends Component {
 		this.props.onChangeColorFormat(evt.target.value);
 	}
 
+	closeSnackbar() {
+		this.setState({ snackbarOpen: false });
+	}
+
 	render() {
-		const { colorFormat } = this.state;
+		const { colorFormat, snackbarOpen } = this.state;
 		const { colorLevel, onChangeColorLevel } = this.props;
+		const snackbarAction = (
+			<IconButton
+				size="small"
+				aria-label="close"
+				color="inherit"
+				onClick={this.closeSnackbar}>
+				<CloseIcon fontSize="small" />
+			</IconButton>
+		);
 		return (
 			<div className="Navbar">
 				<div className="Navbar__logo">
@@ -44,6 +59,12 @@ class Navbar extends Component {
 						<MenuItem value="rgba">RGBA - (255,255,255,1)</MenuItem>
 					</Select>
 				</div>
+				<Snackbar
+					open={snackbarOpen}
+					autoHideDuration={3000}
+					message={<span>Format Change!</span>}
+					action={snackbarAction}
+				/>
 			</div>
 		);
 	}
