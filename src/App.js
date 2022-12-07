@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Palette from './components/Palette/Palette.js';
 
@@ -8,15 +8,25 @@ import { generatePalette } from './helpers/colorHelper';
 import seedsPalette from './assets/seedsPalette';
 
 class App extends Component {
+	findPalette(id) {
+		return seedsPalette.find((palette) => palette.id === id);
+	}
 	render() {
 		return (
-			<Routes>
-				<Route path="/" element={<h1>Palettes go here!</h1>} />
-				<Route path="/palette/:id" element={<h1>Palette</h1>} />
-			</Routes>
-			// <div>
-			// 	<Palette palette={generatePalette(seedsPalette[0])} />
-			// </div>
+			<Switch>
+				<Route exact path="/" render={() => <h1>Palettes go here!</h1>} />
+				<Route
+					exact
+					path="/palette/:id"
+					render={(renderParams) => (
+						<Palette
+							palette={generatePalette(
+								this.findPalette(renderParams.match.params.id)
+							)}
+						/>
+					)}
+				/>
+			</Switch>
 		);
 	}
 }
