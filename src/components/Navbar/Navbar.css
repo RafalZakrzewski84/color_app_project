@@ -14,6 +14,7 @@
 	display: flex;
 	align-items: center;
 	justify-items: center;
+	letter-spacing: -1px;
 }
 .Navbar__logo a {
 	color: black;
