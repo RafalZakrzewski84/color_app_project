@@ -9,7 +9,12 @@ export class PaletteList extends Component {
 				<Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>
 			</div>
 		));
-		return <div>{links}</div>;
+		return (
+			<div className="PaletteList">
+				<h1>React Colors</h1>
+				{links}
+			</div>
+		);
 	}
 }
 
