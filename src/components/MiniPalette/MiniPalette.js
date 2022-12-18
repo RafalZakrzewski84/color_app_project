@@ -8,6 +8,20 @@ const H5 = styled('h5')(unstable_styleFunctionSx);
 const MiniPalette = (props) => {
 	console.log(props);
 	const { colors, paletteName, emoji } = props;
+	const miniColorBlocks = colors.map((color) => (
+		<Div
+			key={color.name}
+			sx={{
+				backgroundColor: color.color,
+				height: '25%',
+				width: '20%',
+				display: 'inline-block',
+				margin: '0 auto',
+				position: 'relative',
+				marginBottom: '-4px',
+			}}
+		/>
+	));
 	return (
 		<Div
 			sx={{
@@ -19,7 +33,16 @@ const MiniPalette = (props) => {
 				overflow: 'hover',
 				'&:hover': { cursor: 'pointer' },
 			}}>
-			<Div sx={{ backgroundColor: 'grey' }}>Colors</Div>
+			<Div
+				sx={{
+					backgroundColor: '#dae1e4',
+					height: '150px',
+					width: '100%',
+					borderRadius: '5px',
+					overflow: 'hidden',
+				}}>
+				{miniColorBlocks}
+			</Div>
 			<H5
 				sx={{
 					display: 'flex',

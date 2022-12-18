@@ -17,7 +17,7 @@ export class PaletteList extends Component {
 			<Div
 				sx={{
 					background: 'blue',
-					height: '100%',
+					height: '100vh',
 					display: 'flex',
 					alignItems: 'flex-start',
 					justifyContent: 'center',
