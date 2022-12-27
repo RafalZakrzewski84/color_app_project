@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { unstable_styleFunctionSx } from '@mui/system';
 
@@ -8,10 +9,17 @@ const Div = styled('div')(unstable_styleFunctionSx);
 const Nav = styled('nav')(unstable_styleFunctionSx);
 
 export class PaletteList extends Component {
+	goToPalette(id) {
+		this.props.history.push(`palette/${id}`);
+	}
 	render() {
 		const { palettes } = this.props;
 		const miniPalettes = palettes.map((palette) => (
-			<MiniPalette key={palette.id} {...palette} />
+			<MiniPalette
+				key={palette.id}
+				{...palette}
+				handleClick={() => this.goToPalette(palette.id)}
+			/>
 		));
 		return (
 			<Div
