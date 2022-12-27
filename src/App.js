@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Palette from './components/Palette/Palette.js';
 import PaletteList from './components/PaletteList/PaletteList.js';
+import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette.js';
 
 import { generatePalette } from './helpers/colorHelper';
 import seedsPalette from './assets/seedsPalette';
@@ -27,10 +28,10 @@ class App extends Component {
 					<Route
 						exact
 						path="/palette/:id"
-						render={(renderParams) => (
+						render={(routeProps) => (
 							<Palette
 								palette={generatePalette(
-									this.findPalette(renderParams.match.params.id)
+									this.findPalette(routeProps.match.params.id)
 								)}
 							/>
 						)}
@@ -38,7 +39,14 @@ class App extends Component {
 					<Route
 						exact
 						path="/palette/:paletteId/:colorId"
-						render={() => <h1>Single color page</h1>}
+						render={(routeProps) => (
+							<SingleColorPalette
+								colorId={routeProps.match.params.colorId}
+								palette={generatePalette(
+									this.findPalette(routeProps.match.params.paletteId)
+								)}
+							/>
+						)}
 					/>
 				</Switch>
 			</ThemeProvider>
