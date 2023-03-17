@@ -16,42 +16,40 @@ class App extends Component {
   }
   render() {
     return (
-      <div style={{ height: '100vh' }}>
-        <ThemeProvider theme={theme}>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={routeProps => (
-                <PaletteList palettes={seedsPalette} {...routeProps} />
-              )}
-            />
-            <Route
-              exact
-              path="/palette/:id"
-              render={routeProps => (
-                <Palette
-                  palette={generatePalette(
-                    this.findPalette(routeProps.match.params.id),
-                  )}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/palette/:paletteId/:colorId"
-              render={routeProps => (
-                <SingleColorPalette
-                  colorId={routeProps.match.params.colorId}
-                  palette={generatePalette(
-                    this.findPalette(routeProps.match.params.paletteId),
-                  )}
-                />
-              )}
-            />
-          </Switch>
-        </ThemeProvider>
-      </div>
+      <ThemeProvider theme={theme}>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={routeProps => (
+              <PaletteList palettes={seedsPalette} {...routeProps} />
+            )}
+          />
+          <Route
+            exact
+            path="/palette/:id"
+            render={routeProps => (
+              <Palette
+                palette={generatePalette(
+                  this.findPalette(routeProps.match.params.id),
+                )}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/palette/:paletteId/:colorId"
+            render={routeProps => (
+              <SingleColorPalette
+                colorId={routeProps.match.params.colorId}
+                palette={generatePalette(
+                  this.findPalette(routeProps.match.params.paletteId),
+                )}
+              />
+            )}
+          />
+        </Switch>
+      </ThemeProvider>
     );
   }
 }
