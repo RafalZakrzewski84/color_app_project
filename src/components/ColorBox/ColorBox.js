@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import chroma from 'chroma-js';
+import styled from 'styled-components';
+import { unstable_styleFunctionSx } from '@mui/system';
 
 import './ColorBox.css';
 
+const Span = styled('span')(unstable_styleFunctionSx);
 class ColorBox extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +40,9 @@ class ColorBox extends Component {
           </div>
           <div className="ColorBox__copy-container">
             <div className="ColorBox__box-content">
-              <span className={isDarkColor ? 'light-text' : null}>{name}</span>
+              <Span sx={{ color: isDarkColor ? 'white' : 'black' }}>
+                {name}
+              </Span>
             </div>
             <button
               className={`ColorBox__copy-btn ${isLightColor && 'dark-text'}`}
