@@ -3,9 +3,62 @@ import Slider from 'rc-slider';
 import { Link } from 'react-router-dom';
 import { Select, MenuItem, Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { withStyles } from '@mui/styles';
 
 import 'rc-slider/assets/index.css';
-import './Navbar.css';
+
+const styles = {
+  navbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyItems: 'center',
+    height: '6vh',
+  },
+  navbarLogo: {
+    marginRight: '15px',
+    padding: '0 13px',
+    fontSize: '22px',
+    backgroundColor: '#eceff1',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyItems: 'center',
+    letterSpacing: '-1px',
+    '& a': {
+      color: 'black',
+      textDecoration: 'none',
+    },
+  },
+  navbarSlider: {
+    width: '340px',
+    margin: '0 10px',
+    display: 'inline-block',
+    '& .rc-slider-track': {
+      backgroundColor: 'transparent',
+    },
+    '& .rc-slider-rail': {
+      height: '8px',
+    },
+    '& .rc-slider-handle, .rc-slider-handle:active, .rc-slider-handle:focus, .rc-slider-handle:hover':
+      {
+        backgroundColor: 'green',
+        outline: 'none',
+        border: '2px solid green',
+        boxShadow: 'none',
+        width: '13px',
+        height: '13px',
+        marginTop: '-3px',
+      },
+  },
+  navbarSelectContainer: {
+    marginRight: '5px',
+    marginLeft: 'auto',
+    '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input':
+      {
+        padding: '3px 10px',
+      },
+  },
+};
 
 class Navbar extends Component {
   constructor(props) {
@@ -26,7 +79,8 @@ class Navbar extends Component {
 
   render() {
     const { colorFormat, snackbarOpen } = this.state;
-    const { colorLevel, onChangeColorLevel, showLevelSlider } = this.props;
+    const { colorLevel, onChangeColorLevel, showLevelSlider, classes } =
+      this.props;
     const snackbarAction = (
       <IconButton
         size="small"
@@ -38,14 +92,14 @@ class Navbar extends Component {
       </IconButton>
     );
     return (
-      <div className="Navbar">
-        <div className="Navbar__logo">
+      <div className={classes.navbar}>
+        <div className={classes.navbarLogo}>
           <Link to="/">reactcolorpicker</Link>
         </div>
         {showLevelSlider && (
-          <div className="Navbar__slider-container">
+          <div>
             <span>Level: {colorLevel}</span>
-            <div className="Navbar__slider">
+            <div className={classes.navbarSlider}>
               <Slider
                 defaultValue={colorLevel}
                 min={100}
@@ -56,7 +110,7 @@ class Navbar extends Component {
             </div>
           </div>
         )}
-        <div className="Navbar__select-container">
+        <div className={classes.navbarSelectContainer}>
           <Select value={colorFormat} onChange={this.handleChange}>
             <MenuItem value="hex">HEX - #FFFFFF</MenuItem>
             <MenuItem value="rgb">RGB - (255,255,255)</MenuItem>
@@ -76,4 +130,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);
