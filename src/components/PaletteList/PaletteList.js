@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { unstable_styleFunctionSx } from '@mui/system';
 
@@ -43,10 +44,15 @@ export class PaletteList extends Component {
               display: 'flex',
               width: '100%',
               justifyContent: 'space-between',
+              alignItems: 'center',
               color: 'white',
+              '& a': {
+                color: 'white',
+              },
             }}
           >
             <h1>React Colors</h1>
+            <Link to="/palette/new">Create Palette</Link>
           </Nav>
           <Div
             sx={{

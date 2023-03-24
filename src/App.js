@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Palette from './components/Palette/Palette.js';
 import PaletteList from './components/PaletteList/PaletteList.js';
 import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette.js';
+import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm.js';
 
 import { generatePalette } from './helpers/colorHelper';
 import seedsPalette from './assets/seedsPalette';
@@ -24,6 +25,11 @@ class App extends Component {
             render={routeProps => (
               <PaletteList palettes={seedsPalette} {...routeProps} />
             )}
+          />
+          <Route
+            exact
+            path="/palette/new"
+            render={routeProps => <NewPaletteForm />}
           />
           <Route
             exact
