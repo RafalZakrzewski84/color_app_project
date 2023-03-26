@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SketchPicker } from 'react-color';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -63,7 +63,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function NewPaletteForm() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [currentColor, setCurrentColor] = useState('grey');
+  const [colors, setColors] = useState(['white', '#e15764']);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -71,6 +73,14 @@ export default function NewPaletteForm() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleColorChange = color => {
+    setCurrentColor(color.hex);
+  };
+
+  const handleAddColor = () => {
+    setColors([...colors, currentColor]);
   };
 
   return (
@@ -127,17 +137,24 @@ export default function NewPaletteForm() {
           </Button>
         </div>
         <SketchPicker
-          color={'red'}
-          onChangeComplete={color => {
-            console.log(color);
-          }}
+          color={currentColor}
+          onChangeComplete={handleColorChange}
         />
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: currentColor }}
+          onClick={handleAddColor}
+        >
           Add Color
         </Button>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
+        {colors.map((color, idx) => (
+          <li key={color + idx} style={{ backgroundColor: color }}>
+            {color}
+          </li>
+        ))}
       </Main>
     </Box>
   );
