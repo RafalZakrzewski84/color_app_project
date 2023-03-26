@@ -1,4 +1,5 @@
 import React from 'react';
+import { SketchPicker } from 'react-color';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -11,8 +12,9 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import Button from '@mui/material/Button';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -86,7 +88,7 @@ export default function NewPaletteForm() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+            Create Palette
           </Typography>
         </Toolbar>
       </AppBar>
@@ -113,6 +115,26 @@ export default function NewPaletteForm() {
           </IconButton>
         </DrawerHeader>
         <Divider />
+        <Typography variant="h6" noWrap component="div">
+          Design new palette
+        </Typography>
+        <div>
+          <Button variant="contained" color="error">
+            Clear Palette
+          </Button>
+          <Button variant="contained" color="primary">
+            Random Color
+          </Button>
+        </div>
+        <SketchPicker
+          color={'red'}
+          onChangeComplete={color => {
+            console.log(color);
+          }}
+        />
+        <Button variant="contained" color="primary">
+          Add Color
+        </Button>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
