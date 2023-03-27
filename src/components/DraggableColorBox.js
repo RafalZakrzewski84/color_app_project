@@ -11,10 +11,10 @@ const styles = {
   },
 };
 
-function DraggableColorBox({ color, classes }) {
+function DraggableColorBox({ name, color, classes }) {
   return (
     <div className={classes.root} style={{ backgroundColor: color }}>
-      {color}
+      {name}
     </div>
   );
 }
