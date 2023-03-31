@@ -11,11 +11,26 @@ import { generatePalette } from './helpers/colorHelper';
 import seedsPalette from './assets/seedsPalette';
 
 const theme = createTheme();
+
 class App extends Component {
-  findPalette(id) {
-    return seedsPalette.find(palette => palette.id === id);
+  constructor(props) {
+    super(props);
+    this.state = { palettes: seedsPalette };
+    this.findPalette = this.findPalette.bind(this);
+    this.savePalette = this.savePalette.bind(this);
   }
+
+  findPalette(id) {
+    return this.state.palettes.find(palette => palette.id === id);
+  }
+
+  savePalette(newPalette) {
+    console.log(newPalette);
+    this.setState(st => ({ palettes: [...st.palettes, newPalette] }));
+  }
+
   render() {
+    const { palettes } = this.state;
     return (
       <ThemeProvider theme={theme}>
         <Switch>
@@ -23,13 +38,18 @@ class App extends Component {
             exact
             path="/"
             render={routeProps => (
-              <PaletteList palettes={seedsPalette} {...routeProps} />
+              <PaletteList palettes={palettes} {...routeProps} />
             )}
           />
           <Route
             exact
             path="/palette/new"
-            render={routeProps => <NewPaletteForm />}
+            render={routeProps => (
+              <NewPaletteForm
+                onSavePalette={this.savePalette}
+                {...routeProps}
+              />
+            )}
           />
           <Route
             exact

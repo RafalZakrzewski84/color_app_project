@@ -64,12 +64,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm({ onSavePalette, history }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('grey');
-  const [colors, setColors] = useState([{ name: 'white', color: '#e15764' }]);
   const [newColorName, setNewColorName] = useState('');
+  const [colors, setColors] = useState([{ name: 'white', color: '#e15764' }]);
 
   useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', value =>
@@ -111,10 +111,18 @@ export default function NewPaletteForm() {
     setColors([...colors, newColor]);
   };
 
+  const handleSavePalette = () => {
+    let paletteName = 'Test New Palette';
+    let id = paletteName.toLocaleLowerCase().replace(/ /g, '-');
+    const newPalette = { paletteName: paletteName, id: id, colors: colors };
+    onSavePalette(newPalette);
+    history.push('/');
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} color="default">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -128,6 +136,13 @@ export default function NewPaletteForm() {
           <Typography variant="h6" noWrap component="div">
             Create Palette
           </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSavePalette}
+          >
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
