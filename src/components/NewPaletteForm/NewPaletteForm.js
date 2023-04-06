@@ -64,13 +64,13 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function NewPaletteForm({ onSavePalette, history }) {
+export default function NewPaletteForm({ onSavePalette, history, palettes }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('grey');
   const [newColorName, setNewColorName] = useState('');
+  const [newPaletteName, setNewPaletteName] = useState('');
   const [colors, setColors] = useState([{ name: 'white', color: '#e15764' }]);
-
   useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', value =>
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase()),
@@ -80,14 +80,21 @@ export default function NewPaletteForm({ onSavePalette, history }) {
         ({ color }) => color.toLowerCase() !== currentColor.toLowerCase(),
       ),
     );
+    ValidatorForm.addValidationRule('isPaletteNameUnique', value =>
+      palettes.every(
+        ({ paletteName }) =>
+          paletteName.toLowerCase() !== newPaletteName.toLowerCase(),
+      ),
+    );
 
     return () => {
       ValidatorForm.removeValidationRule([
         'isColorNameUnique',
         'isColorUnique',
+        'isPaletteNameUnique',
       ]);
     };
-  }, [colors, currentColor]);
+  }, [colors, palettes, newPaletteName, currentColor]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -102,8 +109,11 @@ export default function NewPaletteForm({ onSavePalette, history }) {
   };
 
   const handleChangeColorName = event => {
-    const newName = event.target.value;
-    setNewColorName(newName);
+    setNewColorName(event.target.value);
+  };
+
+  const handleChangePaletteName = event => {
+    setNewPaletteName(event.target.value);
   };
 
   const handleAddColor = () => {
@@ -112,9 +122,8 @@ export default function NewPaletteForm({ onSavePalette, history }) {
   };
 
   const handleSavePalette = () => {
-    let paletteName = 'Test New Palette';
-    let id = paletteName.toLocaleLowerCase().replace(/ /g, '-');
-    const newPalette = { paletteName: paletteName, id: id, colors: colors };
+    let id = newPaletteName.toLocaleLowerCase().replace(/ /g, '-');
+    const newPalette = { paletteName: newPaletteName, id: id, colors: colors };
     onSavePalette(newPalette);
     history.push('/');
   };
@@ -136,13 +145,20 @@ export default function NewPaletteForm({ onSavePalette, history }) {
           <Typography variant="h6" noWrap component="div">
             Create Palette
           </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSavePalette}
-          >
-            Save Palette
-          </Button>
+          <ValidatorForm onSubmit={handleSavePalette}>
+            <TextValidator
+              value={newPaletteName}
+              onChange={handleChangePaletteName}
+              validators={['required', 'isPaletteNameUnique']}
+              errorMessages={[
+                'Enter a palette name',
+                'Enter unique palette name',
+              ]}
+            />
+            <Button type="submit" variant="contained" color="primary">
+              Save Palette
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer

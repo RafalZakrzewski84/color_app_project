@@ -25,7 +25,6 @@ class App extends Component {
   }
 
   savePalette(newPalette) {
-    console.log(newPalette);
     this.setState(st => ({ palettes: [...st.palettes, newPalette] }));
   }
 
@@ -47,6 +46,7 @@ class App extends Component {
             render={routeProps => (
               <NewPaletteForm
                 onSavePalette={this.savePalette}
+                palettes={palettes}
                 {...routeProps}
               />
             )}
