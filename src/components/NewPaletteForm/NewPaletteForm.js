@@ -142,22 +142,29 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ marginRight: 'auto' }}
+          >
             Create Palette
           </Typography>
           <ValidatorForm onSubmit={handleSavePalette}>
-            <TextValidator
-              value={newPaletteName}
-              onChange={handleChangePaletteName}
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={[
-                'Enter a palette name',
-                'Enter unique palette name',
-              ]}
-            />
-            <Button type="submit" variant="contained" color="primary">
-              Save Palette
-            </Button>
+            <Box sx={{ display: 'flex', ml: 'auto' }}>
+              <TextValidator
+                value={newPaletteName}
+                onChange={handleChangePaletteName}
+                validators={['required', 'isPaletteNameUnique']}
+                errorMessages={[
+                  'Enter a palette name',
+                  'Enter unique palette name',
+                ]}
+              />
+              <Button type="submit" variant="contained" color="primary">
+                Save Palette
+              </Button>{' '}
+            </Box>
           </ValidatorForm>
         </Toolbar>
       </AppBar>
