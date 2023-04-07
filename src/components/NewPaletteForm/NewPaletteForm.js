@@ -119,6 +119,12 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
   const handleAddColor = () => {
     const newColor = { color: currentColor, name: newColorName };
     setColors([...colors, newColor]);
+    // setNewColorName('');
+  };
+
+  const deleteColor = colorName => {
+    const colorsFiltered = colors.filter(color => color.name !== colorName);
+    setColors([...colorsFiltered]);
   };
 
   const handleSavePalette = () => {
@@ -229,7 +235,12 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
       <Main open={open}>
         <DrawerHeader />
         {colors.map((c, idx) => (
-          <DraggableColorBox key={c.name + idx} name={c.name} color={c.color} />
+          <DraggableColorBox
+            key={c.name + idx}
+            name={c.name}
+            color={c.color}
+            onDeleteColor={deleteColor}
+          />
         ))}
       </Main>
     </Box>
