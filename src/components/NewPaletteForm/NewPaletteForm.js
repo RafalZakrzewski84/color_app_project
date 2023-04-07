@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { SketchPicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { arrayMove } from 'react-sortable-hoc';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -14,7 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Button from '@mui/material/Button';
-import DraggableColorBox from '../DraggableColorBox';
+import DraggableColorList from '../DraggableColorList';
 
 const drawerWidth = 300;
 
@@ -134,6 +135,10 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
     history.push('/');
   };
 
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors([...arrayMove(colors, oldIndex, newIndex)]);
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -208,7 +213,7 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
             Random Color
           </Button>
         </div>
-        <SketchPicker
+        <ChromePicker
           color={currentColor}
           onChangeComplete={handleColorChange}
         />
@@ -234,14 +239,12 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        {colors.map((c, idx) => (
-          <DraggableColorBox
-            key={c.name + idx}
-            name={c.name}
-            color={c.color}
-            onDeleteColor={deleteColor}
-          />
-        ))}
+        <DraggableColorList
+          colors={colors}
+          onDeleteColor={deleteColor}
+          axis="xy"
+          onSortEnd={onSortEnd}
+        />
       </Main>
     </Box>
   );

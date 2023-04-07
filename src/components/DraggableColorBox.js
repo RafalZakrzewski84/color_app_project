@@ -1,4 +1,5 @@
 import React from 'react';
+import { SortableElement } from 'react-sortable-hoc';
 import { withStyles } from '@mui/styles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
@@ -34,20 +35,22 @@ const styles = {
   },
 };
 
-function DraggableColorBox({ name, color, classes, onDeleteColor }) {
-  const handleDeleteColor = () => onDeleteColor(name);
+const DraggableColorBox = SortableElement(
+  ({ name, color, classes, onDeleteColor }) => {
+    const handleDeleteColor = () => onDeleteColor(name);
 
-  return (
-    <div className={classes.root} style={{ backgroundColor: color }}>
-      <div className={classes.boxContent}>
-        <span>{name}</span>
-        <DeleteForeverIcon
-          className={classes.deleteIcon}
-          onClick={handleDeleteColor}
-        />
+    return (
+      <div className={classes.root} style={{ backgroundColor: color }}>
+        <div className={classes.boxContent}>
+          <span>{name}</span>
+          <DeleteForeverIcon
+            className={classes.deleteIcon}
+            onClick={handleDeleteColor}
+          />
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  },
+);
 
 export default withStyles(styles)(DraggableColorBox);
