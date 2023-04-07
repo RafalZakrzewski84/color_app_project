@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { arrayMove } from 'react-sortable-hoc';
+import { arrayMoveImmutable } from 'array-move';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -65,13 +65,17 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
+const MAX_COLOR_NUMBER = 20;
+
 export default function NewPaletteForm({ onSavePalette, history, palettes }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('grey');
   const [newColorName, setNewColorName] = useState('');
   const [newPaletteName, setNewPaletteName] = useState('');
-  const [colors, setColors] = useState([{ name: 'white', color: '#e15764' }]);
+  const [colors, setColors] = useState([...palettes[0].colors]);
+  const paletteFull = colors.length >= MAX_COLOR_NUMBER;
+
   useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', value =>
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase()),
@@ -124,6 +128,7 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
   };
 
   const deleteColor = colorName => {
+    // console.log('delete', colorName);
     const colorsFiltered = colors.filter(color => color.name !== colorName);
     setColors([...colorsFiltered]);
   };
@@ -136,7 +141,23 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
   };
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    setColors([...arrayMove(colors, oldIndex, newIndex)]);
+    setColors([...arrayMoveImmutable(colors, oldIndex, newIndex)]);
+  };
+
+  const handleClearPalette = () => {
+    setColors([]);
+  };
+
+  const handleRandomColor = () => {
+    let randomPalette = Math.floor(Math.random() * palettes.length);
+    let randomPaletteColor = Math.floor(
+      Math.random() * palettes[randomPalette].colors.length,
+    );
+    const randomColor = {
+      color: palettes[randomPalette].colors[randomPaletteColor].color,
+      name: palettes[randomPalette].colors[randomPaletteColor].name,
+    };
+    setColors([...colors, randomColor]);
   };
 
   return (
@@ -206,10 +227,19 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
           Design new palette
         </Typography>
         <div>
-          <Button variant="contained" color="error">
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handleClearPalette}
+          >
             Clear Palette
           </Button>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={paletteFull}
+            onClick={handleRandomColor}
+          >
             Random Color
           </Button>
         </div>
@@ -231,6 +261,7 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
           <Button
             type="submit"
             variant="contained"
+            disabled={paletteFull}
             sx={{ backgroundColor: currentColor }}
           >
             Add Color
