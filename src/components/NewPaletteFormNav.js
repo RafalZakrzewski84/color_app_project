@@ -2,6 +2,7 @@ import React from 'react';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
+import { withStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
@@ -19,6 +20,9 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  height: '64px',
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
@@ -29,15 +33,23 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+const styles = {
+  root: {
+    display: 'flex',
+  },
+  navButtons: {},
+};
+
 function NewPaletteFormNav({
   open,
   onDrawerOpen,
   newPaletteName,
   onChangePaletteName,
   onSavePalette,
+  classes,
 }) {
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" open={open} color="default">
         <Toolbar>
@@ -56,8 +68,10 @@ function NewPaletteFormNav({
             component="div"
             sx={{ marginRight: 'auto' }}
           >
-            Create Palette
+            Create a palette
           </Typography>
+        </Toolbar>
+        <div className={classes.navButtons}>
           <ValidatorForm onSubmit={onSavePalette}>
             <Box sx={{ display: 'flex', ml: 'auto' }}>
               <TextValidator
@@ -79,10 +93,10 @@ function NewPaletteFormNav({
               Go Back
             </Button>
           </Link>
-        </Toolbar>
+        </div>
       </AppBar>
     </div>
   );
 }
 
-export default NewPaletteFormNav;
+export default withStyles(styles)(NewPaletteFormNav);
