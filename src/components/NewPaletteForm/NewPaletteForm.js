@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ValidatorForm } from 'react-material-ui-form-validator';
 import { arrayMoveImmutable } from 'array-move';
 import { styled, useTheme } from '@mui/material/styles';
+import { withStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
@@ -20,7 +21,7 @@ const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
     height: 'calc(100vh - 64px)',
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -45,9 +46,26 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
+const styles = {
+  container: {
+    width: '90%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttons: {
+    width: '100%',
+  },
+  button: {
+    width: '50%',
+  },
+};
+
 const MAX_COLOR_NUMBER = 20;
 
-export default function NewPaletteForm({ onSavePalette, history, palettes }) {
+function NewPaletteForm({ onSavePalette, history, palettes, classes }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('grey');
@@ -155,6 +173,8 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            display: 'flex',
+            alignItems: 'center',
           },
         }}
         variant="persistent"
@@ -171,34 +191,38 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <Typography variant="h6" noWrap component="div">
-          Design new palette
-        </Typography>
-        <div>
-          <Button
-            variant="contained"
-            color="error"
-            onClick={handleClearPalette}
-          >
-            Clear Palette
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={paletteFull}
-            onClick={handleRandomColor}
-          >
-            Random Color
-          </Button>
+        <div className={classes.container}>
+          <Typography variant="h6" gutterBottom>
+            Design new palette
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="error"
+              onClick={handleClearPalette}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              disabled={paletteFull}
+              onClick={handleRandomColor}
+            >
+              Random Color
+            </Button>
+          </div>
+          <ColorPickerForm
+            currentColor={currentColor}
+            newColorName={newColorName}
+            paletteFull={paletteFull}
+            onColorChange={handleColorChange}
+            onAddColor={handleAddColor}
+            onChangeColorName={handleChangeColorName}
+          />
         </div>
-        <ColorPickerForm
-          currentColor={currentColor}
-          newColorName={newColorName}
-          paletteFull={paletteFull}
-          onColorChange={handleColorChange}
-          onAddColor={handleAddColor}
-          onChangeColorName={handleChangeColorName}
-        />
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
@@ -212,3 +236,5 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
     </Box>
   );
 }
+
+export default withStyles(styles)(NewPaletteForm);
