@@ -6,12 +6,12 @@ const DraggableColorList = SortableContainer(
   ({ colors, onDeleteColor, onSortEnd }) => {
     return (
       <div style={{ height: '100%' }}>
-        {colors.map((c, idx) => (
+        {colors.map(({ name, color }, idx) => (
           <DraggableColorBox
-            key={c.name + idx}
+            key={name + idx}
             index={idx}
-            name={c.name}
-            color={c.color}
+            name={name}
+            color={color}
             onDeleteColor={onDeleteColor}
             onSortEnd={onSortEnd}
           />

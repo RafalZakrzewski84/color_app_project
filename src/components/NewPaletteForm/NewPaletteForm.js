@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChromePicker } from 'react-color';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { ValidatorForm } from 'react-material-ui-form-validator';
 import { arrayMoveImmutable } from 'array-move';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -13,6 +12,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Button from '@mui/material/Button';
 import DraggableColorList from '../DraggableColorList';
 import NewPaletteFormNav from '../NewPaletteFormNav';
+import ColorPickerForm from '../ColorPickerForm';
 
 export const drawerWidth = 300;
 
@@ -53,7 +53,7 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
   const [currentColor, setCurrentColor] = useState('grey');
   const [newColorName, setNewColorName] = useState('');
   const [newPaletteName, setNewPaletteName] = useState('');
-  const [colors, setColors] = useState([...palettes[0].colors]);
+  const [colors, setColors] = useState(palettes[0].colors);
   const paletteFull = colors.length >= MAX_COLOR_NUMBER;
 
   useEffect(() => {
@@ -104,6 +104,7 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
   const handleAddColor = () => {
     const newColor = { color: currentColor, name: newColorName };
     setColors([...colors, newColor]);
+    setNewColorName('');
   };
 
   const deleteColor = colorName => {
@@ -190,30 +191,14 @@ export default function NewPaletteForm({ onSavePalette, history, palettes }) {
             Random Color
           </Button>
         </div>
-        <ChromePicker
-          color={currentColor}
-          onChangeComplete={handleColorChange}
+        <ColorPickerForm
+          currentColor={currentColor}
+          newColorName={newColorName}
+          paletteFull={paletteFull}
+          onColorChange={handleColorChange}
+          onAddColor={handleAddColor}
+          onChangeColorName={handleChangeColorName}
         />
-        <ValidatorForm onSubmit={handleAddColor}>
-          <TextValidator
-            value={newColorName}
-            onChange={handleChangeColorName}
-            validators={['required', 'isColorNameUnique', 'isColorUnique']}
-            errorMessages={[
-              'Enter a color name',
-              'Enter unique color name',
-              'Color already used',
-            ]}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            disabled={paletteFull}
-            sx={{ backgroundColor: currentColor }}
-          >
-            Add Color
-          </Button>
-        </ValidatorForm>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
