@@ -1,9 +1,7 @@
 import React from 'react';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { withStyles } from '@mui/styles';
-import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
+import PaletteMetaForm from './PaletteMetaForm';
 import { drawerWidth } from './NewPaletteForm/NewPaletteForm';
 
 const AppBar = styled(MuiAppBar, {
@@ -72,22 +71,11 @@ function NewPaletteFormNav({
           </Typography>
         </Toolbar>
         <div className={classes.navButtons}>
-          <ValidatorForm onSubmit={onSavePalette}>
-            <Box sx={{ display: 'flex', ml: 'auto' }}>
-              <TextValidator
-                value={newPaletteName}
-                onChange={onChangePaletteName}
-                validators={['required', 'isPaletteNameUnique']}
-                errorMessages={[
-                  'Enter a palette name',
-                  'Enter unique palette name',
-                ]}
-              />
-              <Button type="submit" variant="contained" color="primary">
-                Save Palette
-              </Button>
-            </Box>
-          </ValidatorForm>
+          <PaletteMetaForm
+            newPaletteName={newPaletteName}
+            onChangePaletteName={onChangePaletteName}
+            onSavePalette={onSavePalette}
+          />
           <Link to="/">
             <Button variant="contained" color="secondary">
               Go Back
