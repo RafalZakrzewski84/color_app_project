@@ -11,6 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import PaletteMetaForm from './PaletteMetaForm';
 import { drawerWidth } from './NewPaletteForm/NewPaletteForm';
+import { useState } from 'react';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: prop => prop !== 'open',
@@ -36,7 +37,7 @@ const styles = {
   root: {
     display: 'flex',
   },
-  navButtons: {},
+  navButtons: { display: 'flex', alignItems: 'center', paddingRight: '24px' },
 };
 
 function NewPaletteFormNav({
@@ -47,6 +48,17 @@ function NewPaletteFormNav({
   onSavePalette,
   classes,
 }) {
+  const [openPaletteMetaForm, setOpenPaletteMetaForm] = useState(false);
+
+  const handleClosePaletteMetaForm = () => {
+    if (newPaletteName !== '') {
+      setOpenPaletteMetaForm(false);
+    }
+  };
+  const handleCancel = () => {
+    setOpenPaletteMetaForm(false);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -71,18 +83,29 @@ function NewPaletteFormNav({
           </Typography>
         </Toolbar>
         <div className={classes.navButtons}>
-          <PaletteMetaForm
-            newPaletteName={newPaletteName}
-            onChangePaletteName={onChangePaletteName}
-            onSavePalette={onSavePalette}
-          />
           <Link to="/">
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" sx={{ mr: 1 }}>
               Go Back
             </Button>
           </Link>
+          <Button
+            variant="contained"
+            onClick={() => setOpenPaletteMetaForm(true)}
+          >
+            SAVE
+          </Button>
         </div>
       </AppBar>
+      {openPaletteMetaForm && (
+        <PaletteMetaForm
+          newPaletteName={newPaletteName}
+          onChangePaletteName={onChangePaletteName}
+          onSavePalette={onSavePalette}
+          openPaletteMetaForm={openPaletteMetaForm}
+          onClosePaletteMetaForm={handleClosePaletteMetaForm}
+          onCancel={handleCancel}
+        />
+      )}
     </div>
   );
 }
