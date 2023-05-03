@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -11,13 +13,17 @@ export default function PaletteMetaForm({
   newPaletteName,
   onChangePaletteName,
   onSavePalette,
-  openPaletteMetaForm,
-  onClosePaletteMetaForm,
   onCancel,
 }) {
+  const [open, setOpen] = React.useState(true);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
-      <Dialog open={openPaletteMetaForm} onClose={onClosePaletteMetaForm}>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Palette Name</DialogTitle>
         <ValidatorForm onSubmit={onSavePalette}>
           <DialogContent>
@@ -44,15 +50,12 @@ export default function PaletteMetaForm({
           </DialogContent>
           <DialogActions>
             <Button onClick={onCancel}>Cancel</Button>
-            <Button
-              variant="contained"
-              type="submit"
-              onClick={onClosePaletteMetaForm}
-            >
+            <Button variant="contained" type="submit" onClick={handleClose}>
               Save Palette
             </Button>
           </DialogActions>
         </ValidatorForm>
+        <Picker data={data} onEmojiSelect={console.log} />
       </Dialog>
     </div>
   );
