@@ -50,7 +50,7 @@ function NewPaletteFormNav({
 }) {
   const [openPaletteMetaForm, setOpenPaletteMetaForm] = useState(false);
 
-  const handleCancel = () => {
+  const handleHidePaletteMetaForm = () => {
     setOpenPaletteMetaForm(false);
   };
 
@@ -96,7 +96,7 @@ function NewPaletteFormNav({
           newPaletteName={newPaletteName}
           onChangePaletteName={onChangePaletteName}
           onSavePalette={onSavePalette}
-          onCancel={handleCancel}
+          onHandleHide={handleHidePaletteMetaForm}
         />
       )}
     </div>

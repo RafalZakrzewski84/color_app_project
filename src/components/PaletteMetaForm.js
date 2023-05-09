@@ -13,19 +13,23 @@ export default function PaletteMetaForm({
   newPaletteName,
   onChangePaletteName,
   onSavePalette,
-  onCancel,
+  onHandleHide,
 }) {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState('form');
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleShowEmoji = () => {
+    setOpen('emoji');
+  };
+
+  const handlePickEmoji = emoji => {
+    onSavePalette(emoji.native);
   };
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Palette Name</DialogTitle>
-        <ValidatorForm onSubmit={onSavePalette}>
+      <Dialog open={open === 'form'} onClose={onHandleHide}>
+        <DialogTitle>Add Palette Name</DialogTitle>
+        <ValidatorForm onSubmit={handleShowEmoji}>
           <DialogContent>
             <DialogContentText>
               Please enter name for your brand new color palette. Make sure it
@@ -49,13 +53,16 @@ export default function PaletteMetaForm({
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={onCancel}>Cancel</Button>
-            <Button variant="contained" type="submit" onClick={handleClose}>
-              Save Palette
+            <Button onClick={onHandleHide}>Cancel</Button>
+            <Button variant="contained" type="submit">
+              Save
             </Button>
           </DialogActions>
         </ValidatorForm>
-        <Picker data={data} onEmojiSelect={console.log} />
+      </Dialog>
+      <Dialog open={open === 'emoji'} onClose={onHandleHide}>
+        <DialogTitle>Choose a Palette Emoji</DialogTitle>
+        <Picker data={data} onEmojiSelect={handlePickEmoji} />
       </Dialog>
     </div>
   );
