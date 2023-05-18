@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Palette from './components/Palette/Palette.js';
-import PaletteList from './components/PaletteList/PaletteList.js';
+import PaletteList from './components/PaletteList.js';
 import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette.js';
 import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm.js';
 
