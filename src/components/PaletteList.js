@@ -9,12 +9,13 @@ export class PaletteList extends Component {
     this.props.history.push(`palette/${id}`);
   }
   render() {
-    const { palettes, classes } = this.props;
+    const { palettes, classes, onDeletePalette } = this.props;
     const miniPalettes = palettes.map(palette => (
       <MiniPalette
         key={palette.id}
+        onDeletePalette={onDeletePalette}
         {...palette}
-        handleClick={() => this.goToPalette(palette.id)}
+        onHandleClick={() => this.goToPalette(palette.id)}
       />
     ));
     return (

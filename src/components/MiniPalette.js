@@ -1,9 +1,19 @@
 import React from 'react';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { withStyles } from '@mui/styles';
 import styles from '../styles/MiniPaletteStyles';
 
 const MiniPalette = props => {
-  const { colors, paletteName, emoji, handleClick, classes } = props;
+  const {
+    colors,
+    paletteName,
+    emoji,
+    id,
+    onHandleClick,
+    classes,
+    onDeletePalette,
+  } = props;
+
   const miniColorBlocks = colors.map(color => (
     <div
       key={color.name}
@@ -13,8 +23,19 @@ const MiniPalette = props => {
       }}
     />
   ));
+
+  const handleClick = e => {
+    e.stopPropagation();
+    onDeletePalette(id);
+  };
+
   return (
-    <div className={classes.root} onClick={handleClick}>
+    <div className={classes.root} onClick={onHandleClick}>
+      <DeleteForeverIcon
+        className={classes.delete}
+        styles={{ transition: 'all 0.3s ease-in-out' }}
+        onClick={handleClick}
+      />
       <div className={classes.container}>{miniColorBlocks}</div>
       <h5 className={classes.title}>
         {paletteName}

@@ -5,8 +5,11 @@ const styles = {
     borderRadius: '5px',
     padding: '0.5rem',
     position: 'relative',
-    overflow: 'hover',
-    '&:hover': { cursor: 'pointer' },
+    overflow: 'hidden',
+    cursor: 'pointer',
+    // '& :hover svg': {
+    //   opacity: 1,
+    // },
   },
   container: {
     backgroundColor: '#dae1e4',
@@ -36,6 +39,18 @@ const styles = {
     margin: '0 auto',
     position: 'relative',
     marginBottom: '-4.2px',
+  },
+  delete: {
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    color: 'white',
+    width: '25px',
+    height: '25px',
+    padding: '5px',
+    backgroundColor: '#eb3d30',
+    // opacity: 0,
+    zIndex: 10,
   },
 };
 
