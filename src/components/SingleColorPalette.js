@@ -1,22 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@mui/styles';
+import ColorBox from './ColorBox/ColorBox';
+import Navbar from './Navbar';
+import PaletteFooter from './PaletteFooter';
+import styles from '../styles/PaletteStyles';
 
-import ColorBox from '../ColorBox/ColorBox';
-import Navbar from '../Navbar/Navbar';
-import PaletteFooter from '../PaletteFooter/PaletteFooter';
-
-const styles = {
-  palette: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  color: {
-    height: '90%',
-    overflow: 'hidden',
-  },
-};
 export class SingleColorPalette extends Component {
   constructor(props) {
     super(props);

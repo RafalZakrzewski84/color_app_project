@@ -11,11 +11,10 @@ import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Button from '@mui/material/Button';
-import DraggableColorList from '../DraggableColorList';
-import NewPaletteFormNav from '../NewPaletteFormNav';
-import ColorPickerForm from '../ColorPickerForm';
-
-export const drawerWidth = 300;
+import DraggableColorList from './DraggableColorList';
+import NewPaletteFormNav from './NewPaletteFormNav';
+import ColorPickerForm from './ColorPickerForm';
+import styles, { drawerWidth } from '../styles/NewPaletteFormStyles';
 
 const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -46,23 +45,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
-
-const styles = {
-  container: {
-    width: '90%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttons: {
-    width: '100%',
-  },
-  button: {
-    width: '50%',
-  },
-};
 
 const MAX_COLOR_NUMBER = 20;
 
@@ -234,7 +216,7 @@ function NewPaletteForm({ onSavePalette, history, palettes, classes }) {
         <DrawerHeader />
         <DraggableColorList
           colors={colors}
-          onDeleteColor={deleteColor}
+          deleteColor={deleteColor}
           axis="xy"
           onSortEnd={onSortEnd}
         />

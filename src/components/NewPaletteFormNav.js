@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { withStyles } from '@mui/styles';
@@ -10,8 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import PaletteMetaForm from './PaletteMetaForm';
-import { drawerWidth } from './NewPaletteForm/NewPaletteForm';
-import { useState } from 'react';
+import { drawerWidth } from '../styles/NewPaletteFormStyles';
+import styles from '../styles/NewPaletteFormNav';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: prop => prop !== 'open',
@@ -32,13 +32,6 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
-
-const styles = {
-  root: {
-    display: 'flex',
-  },
-  navButtons: { display: 'flex', alignItems: 'center', paddingRight: '24px' },
-};
 
 function NewPaletteFormNav({
   open,

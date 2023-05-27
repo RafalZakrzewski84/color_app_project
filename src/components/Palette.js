@@ -1,23 +1,10 @@
 import React, { Component } from 'react';
 import { withStyles } from '@mui/styles';
+import Navbar from './Navbar';
+import ColorBox from './ColorBox/ColorBox.js';
+import PaletteFooter from './PaletteFooter';
+import styles from '../styles/PaletteStyles';
 
-import Navbar from '../Navbar/Navbar';
-import ColorBox from '../ColorBox/ColorBox.js';
-import PaletteFooter from '../PaletteFooter/PaletteFooter';
-
-import './Palette.css';
-
-const styles = {
-  palette: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  color: {
-    height: '90%',
-    overflow: 'hidden',
-  },
-};
 class Palette extends Component {
   constructor(props) {
     super(props);

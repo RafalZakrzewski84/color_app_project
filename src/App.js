@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import Palette from './components/Palette/Palette.js';
+import Palette from './components/Palette.js';
 import PaletteList from './components/PaletteList.js';
-import SingleColorPalette from './components/SingleColorPalette/SingleColorPalette.js';
-import NewPaletteForm from './components/NewPaletteForm/NewPaletteForm.js';
+import SingleColorPalette from './components/SingleColorPalette.js';
+import NewPaletteForm from './components/NewPaletteForm.js';
 
 import { generatePalette } from './helpers/colorHelper';
 import seedsPalette from './assets/seedsPalette';

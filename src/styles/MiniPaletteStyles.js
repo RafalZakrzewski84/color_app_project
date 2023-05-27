@@ -7,9 +7,9 @@ const styles = {
     position: 'relative',
     overflow: 'hidden',
     cursor: 'pointer',
-    // '& :hover svg': {
-    //   opacity: 1,
-    // },
+    '&:hover svg': {
+      opacity: 0.9,
+    },
   },
   container: {
     backgroundColor: '#dae1e4',
@@ -49,8 +49,9 @@ const styles = {
     height: '25px',
     padding: '5px',
     backgroundColor: '#eb3d30',
-    // opacity: 0,
+    opacity: 0,
     zIndex: 10,
+    borderRadius: '0% 10%',
   },
 };
 
