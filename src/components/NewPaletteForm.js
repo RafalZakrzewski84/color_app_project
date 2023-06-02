@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ValidatorForm } from 'react-material-ui-form-validator';
-import { arrayMoveImmutable } from 'array-move';
+import { arrayMove } from 'react-sortable-hoc';
 import { styled, useTheme } from '@mui/material/styles';
 import { withStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
@@ -104,13 +104,14 @@ function NewPaletteForm({ onSavePalette, history, palettes, classes }) {
 
   const handleAddColor = () => {
     const newColor = { color: currentColor, name: newColorName };
-    setColors([...colors, newColor]);
+    setColors(prevColors => [...prevColors, newColor]);
     setNewColorName('');
   };
 
   const deleteColor = colorName => {
-    const colorsFiltered = colors.filter(color => color.name !== colorName);
-    setColors([...colorsFiltered]);
+    setColors(prevColors =>
+      prevColors.filter(color => color.name !== colorName),
+    );
   };
 
   const handleSavePalette = emoji => {
@@ -126,7 +127,7 @@ function NewPaletteForm({ onSavePalette, history, palettes, classes }) {
   };
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    setColors([...arrayMoveImmutable(colors, oldIndex, newIndex)]);
+    setColors(prevColors => [...arrayMove(prevColors, oldIndex, newIndex)]);
   };
 
   const handleClearPalette = () => {
@@ -142,7 +143,7 @@ function NewPaletteForm({ onSavePalette, history, palettes, classes }) {
       color: palettes[randomPalette].colors[randomPaletteColor].color,
       name: palettes[randomPalette].colors[randomPaletteColor].name,
     };
-    setColors([...colors, randomColor]);
+    setColors(prevColors => [...prevColors, randomColor]);
   };
 
   return (
@@ -219,6 +220,7 @@ function NewPaletteForm({ onSavePalette, history, palettes, classes }) {
           deleteColor={deleteColor}
           axis="xy"
           onSortEnd={onSortEnd}
+          distance={20}
         />
       </Main>
     </Box>

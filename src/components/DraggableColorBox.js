@@ -5,11 +5,11 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import styles from '../styles/DraggableColorBoxStyles';
 
 const DraggableColorBox = SortableElement(props => {
-  const { name, color, classes, handleClick } = props;
+  const { classes, handleClick, name, color } = props;
   return (
     <div className={classes.root} style={{ backgroundColor: color }}>
       <div className={classes.boxContent}>
-        <span>{name}</span>
+        <span> {name}</span>
         <DeleteForeverIcon
           className={classes.deleteIcon}
           onClick={handleClick}
@@ -18,5 +18,4 @@ const DraggableColorBox = SortableElement(props => {
     </div>
   );
 });
-
 export default withStyles(styles)(DraggableColorBox);
