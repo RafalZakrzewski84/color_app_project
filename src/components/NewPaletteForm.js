@@ -14,7 +14,8 @@ import Button from '@mui/material/Button';
 import DraggableColorList from './DraggableColorList';
 import NewPaletteFormNav from './NewPaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
-import styles, { drawerWidth } from '../styles/NewPaletteFormStyles';
+import styles from '../styles/NewPaletteFormStyles';
+import { drawerWidth } from '../styles/constants';
 
 const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })(
   ({ theme, open }) => ({

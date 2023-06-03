@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import PaletteMetaForm from './PaletteMetaForm';
-import { drawerWidth } from '../styles/NewPaletteFormStyles';
+import { drawerWidth } from '../styles/constants';
 import styles from '../styles/NewPaletteFormNav';
 
 const AppBar = styled(MuiAppBar, {

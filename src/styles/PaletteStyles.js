@@ -3,6 +3,7 @@ const styles = {
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
+    overflowX: 'hidden',
   },
   color: {
     height: '90%',

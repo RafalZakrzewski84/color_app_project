@@ -1,5 +1,3 @@
-export const drawerWidth = 300;
-
 const styles = {
   container: {
     width: '90%',
