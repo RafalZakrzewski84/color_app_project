@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@mui/styles';
 import Navbar from './Navbar';
-import ColorBox from './ColorBox/ColorBox.js';
+import ColorBox from './ColorBox.js';
 import PaletteFooter from './PaletteFooter';
 import styles from '../styles/PaletteStyles';
 
@@ -29,7 +29,7 @@ class Palette extends Component {
         key={color.name + idx}
         background={color[colorFormat]}
         name={color.name}
-        showLink={true}
+        showingFullPalette
         moreUrl={`/palette/${id}/${color.id}`}
       />
     ));

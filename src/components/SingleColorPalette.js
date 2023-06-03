@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@mui/styles';
-import ColorBox from './ColorBox/ColorBox';
+import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import styles from '../styles/PaletteStyles';
@@ -35,7 +35,7 @@ export class SingleColorPalette extends Component {
         key={color.name}
         name={color.name}
         background={color[format]}
-        showLink={false}
+        showingFullPalette={false}
       />
     ));
     return (
@@ -44,10 +44,10 @@ export class SingleColorPalette extends Component {
           onChangeColorFormat={this.changeColorFormat}
           showLevelSlider={false}
         />
-        <div className={`SingleColorPalette ${classes.color}`}>
+        <div className={classes.color}>
           {colorBoxes}
-          <div className="GoBackBox ColorBox">
-            <Link to={`/palette/${id}`} className="GoBack-btn">
+          <div className={classes.goBackBox}>
+            <Link to={`/palette/${id}`} className={classes.goBackBtn}>
               GO BACK
             </Link>
           </div>
