@@ -1,3 +1,5 @@
+import sizes from './sizes';
+
 const styles = {
   palette: {
     height: '100vh',
@@ -18,6 +20,18 @@ const styles = {
     cursor: 'pointer',
     marginBottom: '-4.2px',
     backgroundColor: 'black',
+    [sizes.down('lg')]: {
+      width: '25%',
+      height: '33.33%',
+    },
+    [sizes.down('md')]: {
+      width: '50%',
+      height: '20%',
+    },
+    [sizes.down('xs')]: {
+      width: '100%',
+      height: '10%',
+    },
   },
   goBackBtn: {
     width: '100px',

@@ -13,11 +13,11 @@ const styles = {
     '&:hover button': { opacity: 1, transition: '0.5s' },
     [sizes.down('lg')]: {
       width: '25%',
-      height: props => (props.showingFullPalette ? '20%' : '50%'),
+      height: props => (props.showingFullPalette ? '20%' : '33.33%'),
     },
     [sizes.down('md')]: {
       width: '50%',
-      height: props => (props.showingFullPalette ? '10%' : '50%'),
+      height: props => (props.showingFullPalette ? '10%' : '20%'),
     },
     [sizes.down('xs')]: {
       width: '100%',
@@ -48,13 +48,14 @@ const styles = {
     height: '100%',
     opacity: 0,
     zIndex: 0,
-    position: 'absolute',
+    transform: 'scale(0.1)',
     transition: 'transform 0.6s ease-in-out',
   },
   copyOverlayShow: {
-    transform: 'scale(10)',
-    opacity: 1,
-    zIndex: 10,
+    transform: 'scale(40)',
+    opacity: '1',
+    zIndex: '10',
+    position: 'absolute',
   },
   copyMsg: {
     position: 'fixed',
