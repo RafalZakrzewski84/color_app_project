@@ -2,8 +2,8 @@ const sizes = {
   up() {},
   down(size) {
     const sizes = {
-      xs: '576px',
-      sm: '768px',
+      xs: '600px',
+      sm: '780px',
       md: '992px',
       lg: '1200px',
     };

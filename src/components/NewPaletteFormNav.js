@@ -11,7 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import PaletteMetaForm from './PaletteMetaForm';
 import { drawerWidth } from '../styles/constants';
-import styles from '../styles/NewPaletteFormNav';
+import styles from '../styles/NewPaletteFormNavStyles';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: prop => prop !== 'open',
@@ -72,7 +72,11 @@ function NewPaletteFormNav({
         </Toolbar>
         <div className={classes.navButtons}>
           <Link to="/">
-            <Button variant="contained" color="secondary" sx={{ mr: 1 }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{ marginRight: '0.5rem' }}
+            >
               Go Back
             </Button>
           </Link>

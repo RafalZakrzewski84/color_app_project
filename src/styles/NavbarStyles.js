@@ -1,3 +1,5 @@
+import sizes from './sizes';
+
 const styles = {
   navbar: {
     display: 'flex',
@@ -18,6 +20,14 @@ const styles = {
     '& a': {
       color: 'black',
       textDecoration: 'none',
+    },
+    [sizes.down('xs')]: {
+      fontSize: '18px',
+    },
+  },
+  navbarColorLevel: {
+    [sizes.down('sm')]: {
+      fontSize: '14px',
     },
   },
   navbarSlider: {
@@ -40,6 +50,15 @@ const styles = {
         height: '13px',
         marginTop: '-3px',
       },
+    [sizes.down('md')]: {
+      width: '240px',
+    },
+    [sizes.down('sm')]: {
+      width: '140px',
+    },
+    [sizes.down('xs')]: {
+      width: '120px',
+    },
   },
   navbarSelectContainer: {
     marginRight: '5px',
