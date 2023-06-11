@@ -13,7 +13,7 @@ const styles = {
   },
   container: {
     backgroundColor: '#dae1e4',
-    height: '150px',
+    height: '140px',
     width: '100%',
     borderRadius: '5px',
     overflow: 'hidden',

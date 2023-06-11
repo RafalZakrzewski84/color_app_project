@@ -6,6 +6,7 @@ const sizes = {
       sm: '780px',
       md: '992px',
       lg: '1200px',
+      xl: '1300px',
     };
     return `@media (max-width: ${sizes[size]})`;
   },
