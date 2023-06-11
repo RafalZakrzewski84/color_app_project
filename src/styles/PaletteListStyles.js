@@ -1,14 +1,18 @@
 import sizes from './sizes';
+import bg from './confetti-doodles.svg';
 
 const styles = {
   root: {
-    background: 'blue',
     height: '100vh',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
     overflow: 'scroll',
     overflowX: 'hidden',
+    backgroundColor: '#2E1FFA',
+    // background by svgbackground.com
+    backgroundImage: `url(${bg})`,
+    backgroundAttachment: 'fixed',
   },
   container: {
     width: '60%',
@@ -46,7 +50,7 @@ const styles = {
     },
     [sizes.down('xs')]: {
       gridTemplateColumns: 'repeat(1, 100%)',
-      gridGap: '1.4rem',
+      gridGap: '2rem',
     },
   },
 };
