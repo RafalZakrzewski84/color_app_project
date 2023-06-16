@@ -20,7 +20,7 @@ export class PaletteList extends Component {
           </nav>
           <TransitionGroup className={classes.paletteList}>
             {palettes.map(palette => (
-              <CSSTransition key={palette.id} timeout={300} classNames="fade">
+              <CSSTransition key={palette.id} timeout={500} classNames="fade">
                 <MiniPalette
                   onDeletePalette={onDeletePalette}
                   {...palette}

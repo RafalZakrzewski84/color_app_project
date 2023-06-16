@@ -9,7 +9,7 @@ const styles = {
     '.fade-exit-active': {
       opacity: 0,
       transform: 'scale(0.9)',
-      transition: 'opacity 300ms, transform 300ms',
+      transition: 'opacity 500ms, transform 500ms',
     },
   },
   root: {
