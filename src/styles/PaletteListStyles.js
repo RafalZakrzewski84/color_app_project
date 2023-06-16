@@ -2,6 +2,16 @@ import sizes from './sizes';
 import bg from './confetti-doodles.svg';
 
 const styles = {
+  '@global': {
+    '.fade-exit': {
+      opacity: 1,
+    },
+    '.fade-exit-active': {
+      opacity: 0,
+      transform: 'scale(0.9)',
+      transition: 'opacity 300ms, transform 300ms',
+    },
+  },
   root: {
     height: '100vh',
     display: 'flex',
