@@ -136,14 +136,17 @@ function NewPaletteForm({ onSavePalette, history, palettes, classes }) {
   };
 
   const handleRandomColor = () => {
-    let randomPalette = Math.floor(Math.random() * palettes.length);
-    let randomPaletteColor = Math.floor(
-      Math.random() * palettes[randomPalette].colors.length,
-    );
-    const randomColor = {
-      color: palettes[randomPalette].colors[randomPaletteColor].color,
-      name: palettes[randomPalette].colors[randomPaletteColor].name,
-    };
+    const colorsList = palettes.map(p => p.colors).flat();
+    let random;
+    let randomColor;
+    let isColorUnique = true;
+
+    while (isColorUnique) {
+      random = Math.floor(Math.random() * colorsList.length);
+      randomColor = colorsList[random];
+      isColorUnique = colors.some(c => c.name === randomColor.name);
+      console.log(isColorUnique, randomColor.name);
+    }
     setColors(prevColors => [...prevColors, randomColor]);
   };
 
