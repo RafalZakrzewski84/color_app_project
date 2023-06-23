@@ -1,3 +1,4 @@
+import chroma from 'chroma-js';
 import sizes from './sizes';
 
 const styles = {
@@ -39,9 +40,19 @@ const styles = {
       alignItems: 'center',
     },
   },
+  colorName: {
+    color: ({ color }) =>
+      chroma(color).luminance() <= 0.08
+        ? 'rgba(255,255,255,0.8)'
+        : 'rgba(0,0,0,0.8)',
+  },
   deleteIcon: {
     transition: 'all 0.3s ease-in-out',
     cursor: 'pointer',
+    color: ({ color }) =>
+      chroma(color).luminance() <= 0.08
+        ? 'rgba(255,255,255,0.8)'
+        : 'rgba(0,0,0,0.8)',
   },
 };
 

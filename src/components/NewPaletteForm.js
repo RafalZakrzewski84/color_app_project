@@ -141,10 +141,12 @@ function NewPaletteForm({ onSavePalette, history, palettes, classes }) {
     let randomColor;
     let isColorUnique = true;
 
+    const isColorNameUnique = color => colors.some(c => c.name === color.name);
+
     while (isColorUnique) {
       random = Math.floor(Math.random() * colorsList.length);
       randomColor = colorsList[random];
-      isColorUnique = colors.some(c => c.name === randomColor.name);
+      isColorUnique = isColorNameUnique(randomColor);
       console.log(isColorUnique, randomColor.name);
     }
     setColors(prevColors => [...prevColors, randomColor]);

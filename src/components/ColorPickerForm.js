@@ -21,7 +21,7 @@ function ColorPickerForm({
         color={currentColor}
         onChangeComplete={onColorChange}
       />
-      <ValidatorForm onSubmit={onAddColor}>
+      <ValidatorForm onSubmit={onAddColor} instantValidate={false}>
         <TextValidator
           variant="filled"
           margin="normal"
