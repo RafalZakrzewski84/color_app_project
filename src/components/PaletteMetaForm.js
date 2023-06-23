@@ -23,6 +23,7 @@ export default function PaletteMetaForm({
 
   const handlePickEmoji = emoji => {
     onSavePalette(emoji.native);
+    setOpen('');
   };
 
   return (
