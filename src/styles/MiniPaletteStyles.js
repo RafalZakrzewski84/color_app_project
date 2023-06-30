@@ -8,12 +8,12 @@ const styles = {
     overflow: 'hidden',
     cursor: 'pointer',
     '&:hover svg': {
-      opacity: 0.9,
+      opacity: 1,
     },
   },
   container: {
     backgroundColor: '#dae1e4',
-    height: '140px',
+    height: '150px',
     width: '100%',
     borderRadius: '5px',
     overflow: 'hidden',
@@ -38,7 +38,7 @@ const styles = {
     display: 'inline-block',
     margin: '0 auto',
     position: 'relative',
-    marginBottom: '-4.2px',
+    marginBottom: '-3.5px',
   },
   delete: {
     position: 'absolute',

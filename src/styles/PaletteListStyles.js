@@ -8,8 +8,7 @@ const styles = {
     },
     '.fade-exit-active': {
       opacity: 0,
-      transform: 'scale(0.9)',
-      transition: 'opacity 500ms, transform 500ms',
+      transition: 'opacity 500ms ease-out',
     },
   },
   root: {
@@ -22,7 +21,6 @@ const styles = {
     backgroundColor: '#2E1FFA',
     // background by svgbackground.com
     backgroundImage: `url(${bg})`,
-    backgroundAttachment: 'fixed',
   },
   container: {
     width: '60%',
@@ -32,7 +30,7 @@ const styles = {
     flexWrap: 'wrap',
     marginBottom: '2.5rem',
     [sizes.down('xl')]: {
-      width: '80%',
+      width: '78%',
     },
     [sizes.down('xs')]: {
       width: '70%',
@@ -53,7 +51,7 @@ const styles = {
     width: '100%',
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 30%)',
-    gridGap: '3rem',
+    gridGap: '3.8rem',
     [sizes.down('md')]: {
       gridTemplateColumns: 'repeat(2, 48%)',
       gridGap: '2rem',
