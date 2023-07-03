@@ -46,6 +46,9 @@ const styles = {
       color: 'white',
     },
   },
+  title: {
+    fontSize: '2rem',
+  },
   paletteList: {
     boxSizing: 'border-box',
     width: '100%',

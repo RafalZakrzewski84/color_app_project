@@ -50,7 +50,11 @@ const MiniPalette = props => {
       <div className={classes.root} onClick={onHandleClick}>
         <DeleteForeverIcon
           className={classes.delete}
-          style={{ transition: 'all 0.3s ease-in-out' }}
+          style={{
+            transition: 'all 0.3s ease-in-out',
+            width: '34px',
+            height: '34px',
+          }}
           onClick={onHandleOpen}
         />
         <div className={classes.container}>{miniColorBlocks}</div>
