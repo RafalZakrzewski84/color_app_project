@@ -5,7 +5,7 @@ on:
     branches:
       - color_app_class_components
     paths:
-      - 'color_app_project/**'
+      - 'color_app_project'
 
 defaults:
   run:
