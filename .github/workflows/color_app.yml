@@ -5,10 +5,6 @@ on:
     branches:
       - color_app_class_components
 
-defaults:
-  run:
-    working-directory: color_app_project
-
 jobs:
   builds:
     runs-on: ubuntu-latest
