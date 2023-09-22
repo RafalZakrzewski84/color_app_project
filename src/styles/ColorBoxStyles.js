@@ -49,7 +49,7 @@ const styles = {
     opacity: 0,
     zIndex: 0,
     transform: 'scale(0.1)',
-    transition: 'transform 0.7s ease-in-out',
+    transition: 'transform 0.6s ease-in-out',
   },
   copyOverlayShow: {
     transform: 'scale(40)',
