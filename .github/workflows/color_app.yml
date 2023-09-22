@@ -3,7 +3,7 @@ name: deploy-color-app
 on:
   push:
     branches:
-      - master
+      - color_app_class_components
     paths:
       - 'color_app_project/**'
 
