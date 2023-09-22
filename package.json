@@ -1,5 +1,6 @@
 {
   "name": "color_app_project",
+  "homepage": "/color_app/latest/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
